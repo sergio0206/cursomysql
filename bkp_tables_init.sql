@@ -83,7 +83,11 @@ CREATE TABLE `comivenda` (
   `n_valoivenda` float(10,2) DEFAULT NULL,
   `n_qtdeivenda` int DEFAULT NULL,
   `n_descivenda` float(10,2) DEFAULT NULL,
-  PRIMARY KEY (`n_numeivenda`)
+  PRIMARY KEY (`n_numeivenda`),
+  KEY `fk_comivenda_comprodu` (`n_numeprodu`),
+  KEY `fk_comivenda_comvenda` (`n_numevenda`),
+  CONSTRAINT `fk_comivenda_comprodu` FOREIGN KEY (`n_numeprodu`) REFERENCES `comprodu` (`n_numeprodu`),
+  CONSTRAINT `fk_comivenda_comvenda` FOREIGN KEY (`n_numevenda`) REFERENCES `comvenda` (`n_numevenda`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,30 +101,30 @@ LOCK TABLES `comivenda` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `comprudo`
+-- Table structure for table `comprodu`
 --
 
-DROP TABLE IF EXISTS `comprudo`;
+DROP TABLE IF EXISTS `comprodu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comprudo` (
-  `n_numeprudo` int NOT NULL AUTO_INCREMENT,
-  `c_codiprudo` varchar(20) DEFAULT NULL,
-  `c_descprudo` varchar(100) DEFAULT NULL,
+CREATE TABLE `comprodu` (
+  `n_numeprodu` int NOT NULL AUTO_INCREMENT,
+  `c_codiprodu` varchar(20) DEFAULT NULL,
+  `c_descprodu` varchar(100) DEFAULT NULL,
   `n_valoprodu` float(10,2) DEFAULT NULL,
-  `c_situprudo` varchar(1) DEFAULT NULL,
+  `c_situprodu` varchar(1) DEFAULT NULL,
   `n_numeforne` int DEFAULT NULL,
-  PRIMARY KEY (`n_numeprudo`)
+  PRIMARY KEY (`n_numeprodu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `comprudo`
+-- Dumping data for table `comprodu`
 --
 
-LOCK TABLES `comprudo` WRITE;
-/*!40000 ALTER TABLE `comprudo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comprudo` ENABLE KEYS */;
+LOCK TABLES `comprodu` WRITE;
+/*!40000 ALTER TABLE `comprodu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comprodu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -140,7 +144,13 @@ CREATE TABLE `comvenda` (
   `n_descvenda` float(10,2) DEFAULT NULL,
   `n_totavenda` float(10,2) DEFAULT NULL,
   `d_datavenda` date DEFAULT NULL,
-  PRIMARY KEY (`n_numevenda`)
+  PRIMARY KEY (`n_numevenda`),
+  KEY `fk_comvenda_comforne` (`n_numeforne`),
+  KEY `fk_comvenda_comvende` (`n_numevende`),
+  KEY `fk_comvenda_comclien` (`n_numeclien`),
+  CONSTRAINT `fk_comvenda_comclien` FOREIGN KEY (`n_numeclien`) REFERENCES `comclien` (`n_numeclien`),
+  CONSTRAINT `fk_comvenda_comforne` FOREIGN KEY (`n_numeforne`) REFERENCES `comforne` (`n_numeforne`),
+  CONSTRAINT `fk_comvenda_comvende` FOREIGN KEY (`n_numevende`) REFERENCES `comvende` (`n_numevende`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -219,4 +229,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-15 11:36:38
+-- Dump completed on 2024-07-16 11:01:11
