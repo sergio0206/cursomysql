@@ -30,6 +30,8 @@ CREATE TABLE `comclien` (
   `d_dataclien` date DEFAULT NULL,
   `c_cnpjclien` varchar(20) DEFAULT NULL,
   `c_foneclien` varchar(20) DEFAULT NULL,
+  `c_cidaclien` varchar(50) DEFAULT NULL,
+  `c_estaclien` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`n_numeclien`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -164,36 +166,6 @@ LOCK TABLES `comvenda` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `comvendas`
---
-
-DROP TABLE IF EXISTS `comvendas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comvendas` (
-  `n_numevenda` int NOT NULL AUTO_INCREMENT,
-  `c_codivenda` varchar(10) DEFAULT NULL,
-  `n_numeclien` int NOT NULL,
-  `n_numeforne` int NOT NULL,
-  `n_numevende` int NOT NULL,
-  `n_valovenda` float(10,2) DEFAULT NULL,
-  `n_descvenda` float(10,2) DEFAULT NULL,
-  `n_totavenda` float(10,2) DEFAULT NULL,
-  `d_datavenda` date DEFAULT NULL,
-  PRIMARY KEY (`n_numevenda`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comvendas`
---
-
-LOCK TABLES `comvendas` WRITE;
-/*!40000 ALTER TABLE `comvendas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comvendas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `comvende`
 --
 
@@ -229,4 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-16 11:01:11
+-- Dump completed on 2024-07-16 11:40:42
